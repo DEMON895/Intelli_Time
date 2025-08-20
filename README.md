@@ -28,12 +28,5 @@ A modern, responsive single-page web application showcasing an AI-powered timeta
 - **Tailwind CSS** – Utility-first styling for responsive design  
 - **JavaScript (Vanilla)** – Drives interactivity in the demo component
 
-## 📷 Preview
 
-![Preview Screenshot](placeholder-image-url.png)  
-*Mockup of the AI timetable system homepage with demo interaction*
-
-> 🔧 *Note: Replace `placeholder-image-url.png` with your actual screenshot.*
-
-## 📂 Folder Structure
 
