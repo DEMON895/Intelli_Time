@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliTime | AI-Powered Timetable Optimization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-marker {
+            position: relative;
+        }
+        
+        .timeline-marker::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid #e9d8fd;
+        }
+        
+        #demoContainer {
+            transition: all 0.3s ease;
+        }
+        
+        .schedule-item {
+            transition: all 0.2s ease;
+        }
+        
+        .schedule-item:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6c59f9f7-df4b-4b75-8230-a3a560154e59.png" alt="IntelliTime logo featuring a clock with interconnected nodes representing AI optimization" class="h-8 w-8">
+                        <span class="ml-2 text-xl font-bold text-gray-900">IntelliTime</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#features" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Features</a>
+                    <a href="#how-it-works" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">How It Works</a>
+                    <a href="#demo" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Demo</a>
+                    <a href="#contact" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Contact</a>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors">Get Started</button>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Heroicon name: menu -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Revolutionize Your Schedule with AI-Powered Optimization</h1>
+                    <p class="text-xl mb-8 opacity-90">IntelliTime leverages advanced machine learning to create perfect timetables that adapt to your needs, preferences, and constraints—saving you hours each week.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-indigo-700 px-6 py-3 rounded-md text-lg font-semibold hover:bg-gray-100 transition-colors">Try Free Demo</button>
+                        <button class="border-2 border-white text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-white hover:bg-opacity-10 transition-colors">See How It Works</button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/49291ccc-822e-4eee-95c2-5396948a9369.png" alt="Digital interface showing a calendar transforming into an optimized schedule with AI suggestions and efficiency metrics" class="rounded-lg shadow-2xl border-4 border-white">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-xl">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-2 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-500">UP TO</p>
+                                <p class="text-2xl font-bold text-gray-900">63% More Efficient</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Smart Scheduling Features</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our AI analyzes multiple factors to create schedules that truly work for you.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4f2c3538-3c46-4aaa-8454-06bd421049ca.png" alt="Icon representing machine learning with circuit board and gears" class="h-8 w-8">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Adaptive Learning</h3>
+                    <p class="text-gray-600">Our system continuously learns from your preferences, schedule changes, and feedback to improve future recommendations.</p>
+                </div>
+                
+                <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/646b8d15-96a1-4586-8b60-426b8fd4ef5f.png" alt="Icon representing multiple constraints being managed with interconnected dots" class="h-8 w-8">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Constraint Handling</h3>
+                    <p class="text-gray-600">Easily set and manage various constraints like room availability, instructor preferences, and student conflicts.</p>
+                </div>
+                
+                <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1478a6cc-04c6-476b-bfd2-83c765ae1219.png" alt="Icon showing real-time updates with circular arrows and clock" class="h-8 w-8">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Real-time Optimization</h3>
+                    <p class="text-gray-600">When changes occur, our system instantly recalculates the optimal schedule without disrupting your workflow.</p>
+                </div>
+                
+                <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f951e733-b966-4f62-8039-fffaeedbdd05.png" alt="Icon of people with different colored avatars representing diverse user needs" class="h-8 w-8">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Multi-user Coordination</h3>
+                    <p class="text-gray-600">Effortlessly coordinate schedules across teams, departments, or entire institutions while respecting individual preferences.</p>
+                </div>
+                
+                <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/13360ae4-5b5f-484a-bd35-d871e203fe0b.png" alt="Icon showing analytics dashboard with charts and metrics" class="h-8 w-8">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Performance Analytics</h3>
+                    <p class="text-gray-600">Get detailed insights into schedule efficiency, resource utilization, and conflict resolution metrics.</p>
+                </div>
+                
+                <div class="feature-card bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-all">
+                    <div class="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/97b0cfd0-f921-4ac1-adb0-38281acf2f18.png" alt="Icon representing API integration with puzzle pieces connecting" class="h-8 w-8">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Easy Integration</h3>
+                    <p class="text-gray-600">Seamlessly connect with your existing calendar systems, LMS platforms, and productivity tools via API.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">How IntelliTime Works</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our proprietary algorithm follows a multi-stage optimization process.</p>
+            </div>
+            
+            <div class="relative max-w-3xl mx-auto">
+                <!-- Timeline line -->
+                <div class="absolute left-8 top-0 w-0.5 h-full bg-indigo-200"></div>
+                
+                <!-- Timeline items -->
+                <div class="space-y-12">
+                    <div class="relative pl-12 timeline-marker">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold mb-3">1. Data Collection</h3>
+                            <p class="text-gray-600">Our system gathers all relevant inputs - courses, rooms, instructors, student enrollments, and any special constraints or preferences.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative pl-12 timeline-marker">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold mb-3">2. Initial Constraint Satisfaction</h3>
+                            <p class="text-gray-600">The algorithm first eliminates impossible combinations to create a feasible solution space.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative pl-12 timeline-marker">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold mb-3">3. Multi-objective Optimization</h3>
+                            <p class="text-gray-600">Using genetic algorithms and machine learning, we optimize for multiple factors simultaneously while respecting all constraints.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative pl-12 timeline-marker">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold mb-3">4. Human-in-the-Loop Review</h3>
+                            <p class="text-gray-600">The system presents options to administrators who can provide feedback that improves future optimizations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative pl-12 timeline-marker">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-bold mb-3">5. Continuous Adaptation</h3>
+                            <p class="text-gray-600">As schedules are used and modified, the system learns and adapts to changing circumstances and preferences.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="py-20 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Interactive Demo</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Try our AI optimizer with sample data or enter your own constraints.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-bold mb-6 text-gray-900">Input Parameters</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Activities</label>
+                            <input type="range" id="activityRange" min="5" max="30" value="15" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>5</span>
+                                <span>15</span>
+                                <span>30</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Resources</label>
+                            <input type="range" id="resourceRange" min="3" max="15" value="8" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>3</span>
+                                <span>9</span>
+                                <span>15</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Constraint Strictness</label>
+                            <input type="range" id="constraintRange" min="1" max="5" value="3" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>Flexible</span>
+                                <span>Balanced</span>
+                                <span>Strict</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Optimization Goal</label>
+                            <select id="optimizationGoal" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                <option>Minimize conflicts</option>
+                                <option>Maximize resource utilization</option>
+                                <option>Balance workload</option>
+                                <option>Prioritize morning sessions</option>
+                            </select>
+                        </div>
+                        
+                        <button id="optimizeBtn" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-indigo-700 transition-colors">Run Optimization</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <div id="demoContainer" class="bg-white p-8 rounded-xl shadow-sm h-full">
+                        <div id="beforeAfter" class="mb-8">
+                            <div class="flex justify-between mb-4">
+                                <h3 class="text-xl font-bold text-gray-900">Before Optimization</h3>
+                                <h3 class="text-xl font-bold text-gray-900">After Optimization</h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div id="beforeSchedule" class="space-y-2">
+                                    <!-- Placeholder schedule items will be added by JS -->
+                                </div>
+                                <div id="afterSchedule" class="space-y-2">
+                                    <!-- Optimized schedule items will be added by JS -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="stats" class="border-t pt-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Optimization Results</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-indigo-50 p-4 rounded-lg">
+                                    <p class="text-sm text-gray-500">Conflict Reduction</p>
+                                    <p class="text-2xl font-bold text-indigo-600">+78%</p>
+                                </div>
+                                <div class="bg-indigo-50 p-4 rounded-lg">
+                                    <p class="text-sm text-gray-500">Resource Utilization</p>
+                                    <p class="text-2xl font-bold text-indigo-600">+42%</p>
+                                </div>
+                                <div class="bg-indigo-50 p-4 rounded-lg">
+                                    <p class="text-sm text-gray-500">Time to Optimize</p>
+                                    <p class="text-2xl font-bold text-indigo-600">2.4s</p>
+                                </div>
+                                <div class="bg-indigo-50 p-4 rounded-lg">
+                                    <p class="text-sm text-gray-500">Constraints Met</p>
+                                    <p class="text-2xl font-bold text-indigo-600">100%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Trusted by Educational Institutions</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">See how IntelliTime is transforming scheduling for organizations worldwide.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/10dab4e8-851a-41a4-b1ee-a42ac8d3e95f.png" alt="University of Tech campus with modern buildings and green spaces" class="h-12 w-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold">University of Tech</h3>
+                            <p class="text-sm text-gray-500">Sydney, Australia</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"IntelliTime reduced our scheduling conflicts by 92% in the first semester, saving our staff hundreds of hours previously spent manually arranging timetables."</p>
+                    <p class="text-sm font-medium">- Dr. Sarah Chen, Academic Dean</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5539a7f7-2df1-4102-84b6-f8d48d2ed7a9.png" alt="Global Business School with glass facade and professional environment" class="h-12 w-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold">Global Business School</h3>
+                            <p class="text-sm text-gray-500">London, UK</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"The adaptive learning feature has been revolutionary. The system now predicts scheduling needs before we even realize them, creating a seamless experience for both faculty and students."</p>
+                    <p class="text-sm font-medium">- Michael Rodriguez, Operations Director</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f5ede93c-e088-4fed-ad20-149e26af3685.png" alt="Community College with diverse student population studying together" class="h-12 w-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold">Westside Community College</h3>
+                            <p class="text-sm text-gray-500">California, USA</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"With IntelliTime, we've been able to accommodate 30% more students without increasing classroom resources by optimizing our space utilization throughout the day."</p>
+                    <p class="text-sm font-medium">- Priya Kumar, Registrar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Scheduling Process?</h2>
+            <p class="text-xl mb-8 opacity-90 max-w-3xl mx-auto">Join hundreds of institutions using IntelliTime to save time, reduce conflicts, and create better schedules.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-indigo-700 px-8 py-4 rounded-md text-lg font-semibold hover:bg-gray-100 transition-colors">Request a Demo</button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-white hover:bg-opacity-10 transition-colors">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-6">Product</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Integrations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-6">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-6">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div id="contact">
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-6">Subscribe</h3>
+                    <p class="mb-4">Get the latest news and updates from IntelliTime.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-900">
+                        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-r-md hover:bg-indigo-700 transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2023 IntelliTime AI. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51fdc608-9353-4491-b9e0-b79c8c095d59.png" alt="Twitter logo icon" class="h-6 w-6">
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c7f94a08-c85a-4fa8-a3a9-c90c3e0ecb33.png" alt="LinkedIn logo icon" class="h-6 w-6">
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0088fc77-0aeb-4306-afc1-6bfcc3d147c4.png" alt="GitHub logo icon" class="h-6 w-6">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate random schedule items for demo
+            function generateRandomSchedule(count) {
+                const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+                const types = ['Lecture', 'Lab', 'Seminar', 'Workshop'];
+                const subjects = ['Math', 'Physics', 'Chemistry', 'Biology', 'CS', 'Engineering', 'Business', 'Arts'];
+                const locations = ['A101', 'B205', 'C304', 'D412', 'E109'];
+                const conflicts = ['CONFLICT', 'OK'];
+                const colors = ['bg-red-100', 'bg-blue-100', 'bg-green-100', 'bg-yellow-100', 'bg-purple-100', 'bg-pink-100'];
+                
+                let scheduleItems = [];
+                for (let i = 0; i < count; i++) {
+                    const randomDay = days[Math.floor(Math.random() * days.length)];
+                    const randomTime = `${8 + Math.floor(Math.random() * 10)}:${Math.random() > 0.5 ? '00' : '30'}`;
+                    const randomType = types[Math.floor(Math.random() * types.length)];
+                    const randomSubject = subjects[Math.floor(Math.random() * subjects.length)];
+                    const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+                    const randomConflict = conflicts[Math.floor(Math.random() * 2)];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    scheduleItems.push({
+                        day: randomDay,
+                        time: randomTime,
+                        type: randomType,
+                        subject: randomSubject,
+                        location: randomLocation,
+                        conflict: randomConflict,
+                        color: randomColor
+                    });
+                }
+                return scheduleItems;
+            }
+            
+            // Render schedule items to DOM
+            function renderSchedule(items, containerId, optimized = false) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = '';
+                
+                items.forEach(item => {
+                    const scheduleItem = document.createElement('div');
+                    scheduleItem.className = `schedule-item p-3 rounded-md border ${item.color} ${optimized ? 'border-green-500' : item.conflict === 'CONFLICT' ? 'border-red-500' : 'border-gray-300'}`;
+                    
+                    // Display conflict status for non-optimized schedule
+                    if (!optimized && item.conflict === 'CONFLICT') {
+                        scheduleItem.innerHTML = `
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-semibold">${item.subject} ${item.type}</p>
+                                    <p class="text-sm">${item.day} ${item.time} • ${item.location}</p>
+                                </div>
+                                <span class="text-xs font-bold text-red-600">CONFLICT</span>
+                            </div>
+                        `;
+                    } else {
+                        scheduleItem.innerHTML = `
+                            <div>
+                                <p class="font-semibold">${item.subject} ${item.type}</p>
+                                <p class="text-sm">${item.day} ${item.time} • ${item.location}</p>
+                            </div>
+                        `;
+                    }
+                    
+                    container.appendChild(scheduleItem);
+                });
+            }
+            
+            // Initialize demo with random data
+            const activities = parseInt(document.getElementById('activityRange').value);
+            const initialSchedule = generateRandomSchedule(activities);
+            renderSchedule(initialSchedule, 'beforeSchedule');
+            
+            // Create optimized version (just random for demo)
+            const optimizedSchedule = initialSchedule.map(item => {
+                return {
+                    ...item,
+                    conflict: 'OK' // All conflicts resolved in optimized version
+                };
+            });
+            renderSchedule(optimizedSchedule, 'afterSchedule', true);
+            
+            // Handle form submission
+            document.getElementById('optimizeBtn').addEventListener('click', function() {
+                // Show loading state
+                document.getElementById('demoContainer').classList.add('opacity-75');
+                document.getElementById('optimizeBtn').disabled = true;
+                document.getElementById('optimizeBtn').textContent = 'Optimizing...';
+                document.getElementById('optimizeBtn').classList.remove('hover:bg-indigo-700');
+                
+                // Simulate AI processing delay
+                setTimeout(() => {
+                    const newActivityCount = parseInt(document.getElementById('activityRange').value);
+                    const newSchedule = generateRandomSchedule(newActivityCount);
+                    renderSchedule(newSchedule, 'beforeSchedule');
+                    
+                    // "Optimized" version - resolve all conflicts
+                    const newOptimized = newSchedule.map(item => {
+                        return {
+                            ...item,
+                            conflict: 'OK'
+                        };
+                    });
+                    renderSchedule(newOptimized, 'afterSchedule', true);
+                    
+                    // Update stats with random improvements
+                    document.querySelectorAll('#stats .text-indigo-600')[0].textContent = `+${Math.floor(70 + Math.random() * 30)}%`;
+                    document.querySelectorAll('#stats .text-indigo-600')[1].textContent = `+${Math.floor(30 + Math.random() * 30)}%`;
+                    document.querySelectorAll('#stats .text-indigo-600')[2].textContent = `${(1.5 + Math.random() * 2).toFixed(1)}s`;
+                    
+                    // Reset button state
+                    document.getElementById('demoContainer').classList.remove('opacity-75');
+                    document.getElementById('optimizeBtn').disabled = false;
+                    document.getElementById('optimizeBtn').textContent = 'Run Optimization';
+                    document.getElementById('optimizeBtn').classList.add('hover:bg-indigo-700');
+                }, 1500);
+            });
+            
+            // Handle range input changes
+            document.getElementById('activityRange').addEventListener('input', function() {
+                document.querySelector('#activityRange + div > span:nth-child(2)').textContent = this.value;
+            });
+            
+            document.getElementById('resourceRange').addEventListener('input', function() {
+                document.querySelector('#resourceRange + div > span:nth-child(2)').textContent = this.value;
+            });
+        });
+    </script>
+</body>
+</html>
